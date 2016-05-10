@@ -1,0 +1,21 @@
+version: '2'
+services:
+    reinsurance-app:
+        image: reinsurance
+        external_links:
+            - reinsurance-postgresql:postgresql
+            - reinsurance-elasticsearch:elasticsearch
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/reinsurance
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=elasticsearch:9300
+        ports:
+            - 8080:8080
+    reinsurance-postgresql:
+        extends:
+            file: postgresql.yml
+            service: reinsurance-postgresql
+    reinsurance-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: reinsurance-elasticsearch

@@ -1,0 +1,12 @@
+version: '2'
+services:
+    reinsurance-postgresql:
+        container_name: reinsurance-postgresql
+        image: postgres:9.5.1
+        # volumes:
+        #     - ~/volumes/jhipster/reinsurance/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=reinsurance
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432
